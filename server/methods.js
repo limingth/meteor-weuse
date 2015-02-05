@@ -7,7 +7,13 @@ Meteor.methods({
     check(geohash, String);
     Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.geohash":geohash, updatedAt:new Date() }});
   },
+
   'unset-user-geohash': function () {
     Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.geohash":undefined}});
+  },
+
+  'set-user-loginpos': function(pos) {
+    Meteor.users.update({_id:Meteor.user()._id}, {$set:{"loginpos":pos}});
   }
+
 });

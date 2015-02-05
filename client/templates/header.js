@@ -17,4 +17,5 @@ Template.header.events({
 Template.header.rendered = function () {
   // initGMaps();
   Session.set('mapLoaded', 'dom');
+  
 }

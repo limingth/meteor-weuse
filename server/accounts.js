@@ -1,3 +1,11 @@
+
+Accounts.onLogin(function(options) {
+  Meteor.users.update({ _id: options.user._id }, {
+    $set: { lastActiveAt: new Date() }
+  });
+  console.log ("user onLogin");
+});
+
 Accounts.onCreateUser(function (options, user) {
   if (user.services.github) {
     var accessToken = user.services.github.accessToken,
@@ -37,6 +45,7 @@ Accounts.onCreateUser(function (options, user) {
 
     user.profile = result.data;
     user.everything = repo;
+    user.loginpos = {};
   }
   return user;
 });

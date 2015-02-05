@@ -15,6 +15,10 @@ datariot:ganalytics
 iron:router
 meteorhacks:fast-render
 
+mdg:geolocation
+jquery
+coffeescript
+
 #googlemaps
 #geohash
 #bootstrap-3

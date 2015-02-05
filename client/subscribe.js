@@ -18,6 +18,27 @@ Deps.autorun(function(){
   }
 });
 
+Deps.autorun(function(){
+  if (Meteor.user()) 
+  {
+    console.log('User is logged');
+
+    var l = Geolocation.latLng();
+    if (l)
+    {
+      console.log('Geolocation arrived!');
+      Session.set('myloc', l);
+      console.log('lat:', Session.get('myloc').lat); 
+      console.log('lng:', Session.get('myloc').lng); 
+
+      //Meteor.user().loginpos = l;
+      Meteor.call('set-user-loginpos', l);
+    }
+  } 
+  else 
+    console.log('User is not logged');
+});
+
 
 
 

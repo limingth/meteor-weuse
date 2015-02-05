@@ -30,6 +30,7 @@
         <h4 class="media-heading">{{ profile.name }} (<a href="{{profile.html_url}}">
           {{ profile.login }}</a>)</h4>
         <p><span class="js-set-geohash label label-primary" data-geohash="{{profile.geohash}}">{{profile.geohash}}</span> - {{profile.location}} <a rel="nofollow" href="{{ profile.blog }}">{{ profile.blog }}</a></p>
+        <p>{{loginpos.lat}}, {{loginpos.lng}}</p>
       </div>
     </div>
     {{else}}
