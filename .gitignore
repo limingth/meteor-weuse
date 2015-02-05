@@ -17,5 +17,5 @@ deploy.sh
 dump/
 dump/*
 
-settings.json
-settings.local.json
+#settings.json
+#settings.local.json
