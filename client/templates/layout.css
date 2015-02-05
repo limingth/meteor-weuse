@@ -32,3 +32,7 @@
   z-index: 9;
   background-color:white;
 }
+
+#map-canvas {
+    margin: 10px 0;
+}

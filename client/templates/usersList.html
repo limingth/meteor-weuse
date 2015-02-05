@@ -1,6 +1,7 @@
 <template name="usersList">
   <!-- usersList -->
-  <p style="margin-top:290px;">
+  <div>
+  <p style="margin-top:20px;">
     {{#if selectedGeohash }}
       <h3>Users from: <span class="js-unset-geohash label label-primary">{{selectedGeohash}} &times;</span>
         {{#if isUserInThisGeohash}}          
@@ -36,5 +37,6 @@
     {{else}}
     <p style="font-size:20px;margin-top:30px;">There are no user in this area, wanna be the first? <i class="glyphicon glyphicon-hand-up"></i></p>
   {{/each}}
+  </div>
 
 </template>
