@@ -58,7 +58,8 @@ initGMaps = function initGMaps() {
             var selectedGeohash = geohash.encode(ev.latLng.lat(),ev.latLng.lng(),5);
             Session.set('selectedGeohash', selectedGeohash);
           }
-          // console.log(geohash.encode(ev.latLng.lat(),ev.latLng.lng(),5));
+          console.log(ev.latLng.lat(), ev.latLng.lng());
+          console.log(geohash.encode(ev.latLng.lat(),ev.latLng.lng(),5));
         });
 
         map['addMarkers'] = function addMarkers(array){

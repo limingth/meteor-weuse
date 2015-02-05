@@ -33,6 +33,12 @@ Deps.autorun(function(){
 
       //Meteor.user().loginpos = l;
       Meteor.call('set-user-loginpos', l);
+
+      var selectedGeohash = geohash.encode(l.lat, l.lng, 5);
+      Session.set('selectedGeohash', selectedGeohash);
+
+      // as if we have clicked
+      Meteor.call('set-user-geohash', Session.get('selectedGeohash'));
     }
   } 
   else 
