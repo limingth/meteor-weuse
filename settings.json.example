@@ -1,7 +1,0 @@
-{
-  "github_client":"YOUR SECRET HERE",
-  "github_secret":"YOUR SECRET HERE",
-  "public": {
-    "ga": "readable on the client"
-  }
-}

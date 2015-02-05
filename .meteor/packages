@@ -3,13 +3,21 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-standard-app-packages
-googlemaps
-geohash
-bootstrap-3
+meteor-platform
 accounts-ui
 accounts-github
 service-configuration
-GAnalytics
-iron-router
-fast-render
+standard-app-packages
+mrt:googlemaps
+mrt:geohash
+mrt:bootstrap-3
+datariot:ganalytics
+iron:router
+meteorhacks:fast-render
+
+#googlemaps
+#geohash
+#bootstrap-3
+#GAnalytics
+#iron-router
+#fast-render
