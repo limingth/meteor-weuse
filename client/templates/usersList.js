@@ -22,10 +22,15 @@ Template.usersList.selectedGeohash = function () {
 
 Template.usersList.allUsers = function () {
   
-  var cond = Session.get('filter-cond');
+  var cond = Session.get('cond');
+  var reponame = Session.get('reponame');
 
   if (cond == 1)
-    return Meteor.users.find({}, {limit:1, sort:{updatedAt:1}});
+  {
+    if (reponame)
+       return Meteor.users.find({'profile.name': reponame}, {limit:1, sort:{updatedAt:1}}); 
+    return Meteor.users.find({}, {limit:1, sort:{updatedAt:1}});  
+  }  
 
   if (Session.get('selectedGeohash')) {
     return Meteor.users.find({'profile.geohash':Session.get('selectedGeohash')}, {sort:{}});
@@ -59,10 +64,15 @@ Template.usersList.events = {
       handleFilter();
     }
   },
-  'click button': function () {
-    console.log ('filter button clicked');
+  'submit .repo-name': function (event) {
+    // body...
+    console.log ('submit entered');
 
-    Session.set('filter-cond', 1);
+    //var $input = $(event.target).find('[type=text]');
+    var text = event.target.text.value;
+      console.log ('input repo name ', text);
+    Session.set('cond', 1);   
+    Session.set('reponame', text);    
   }
 }
 
