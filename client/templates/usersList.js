@@ -22,6 +22,11 @@ Template.usersList.selectedGeohash = function () {
 
 Template.usersList.allUsers = function () {
   
+  var cond = Session.get('filter-cond');
+
+  if (cond == 1)
+    return Meteor.users.find({}, {limit:1, sort:{updatedAt:1}});
+
   if (Session.get('selectedGeohash')) {
     return Meteor.users.find({'profile.geohash':Session.get('selectedGeohash')}, {sort:{}});
   } else {
@@ -53,5 +58,11 @@ Template.usersList.events = {
     if (ev.charCode === 13){
       handleFilter();
     }
+  },
+  'click button': function () {
+    console.log ('filter button clicked');
+
+    Session.set('filter-cond', 1);
   }
 }
+
