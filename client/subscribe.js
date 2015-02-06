@@ -21,7 +21,7 @@ Deps.autorun(function(){
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 
 Deps.autorun(function(){
-  if (Meteor.user() && Meteor.user().lgoinpos) 
+  if (Meteor.user() && Meteor.user().loginpos) 
   {
     console.log('User is logged');
 
@@ -34,6 +34,9 @@ Deps.autorun(function(){
       console.log('lat:', l.lat);
       console.log('lng:', l.lng);
       Meteor.call('set-user-login-pos', l);
+
+      var selectedGeohash = geohash.encode(l.lat, l.lng, 5);
+      Meteor.call('set-user-geohash', selectedGeohash);
 
       url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng;
       console.log ('url: ', url);
@@ -54,6 +57,7 @@ Deps.autorun(function(){
           Meteor.call('set-user-login-zip', z);
         }
       });
+
     }
   }
   else 
