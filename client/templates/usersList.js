@@ -6,8 +6,8 @@ icons = {
 
 // reactive data
 Template.usersList.usersNumber = function () {
-  //return Meteor.users.find().count() || 0;
-  allUsers.find().count() || 0;
+  return Meteor.users.find().count() || 0;
+  //allUsers.find().count() || 0;
 }
 
 Template.usersList.isUserInThisGeohash = function () {
