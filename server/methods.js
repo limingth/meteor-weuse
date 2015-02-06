@@ -12,8 +12,15 @@ Meteor.methods({
     Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.geohash":undefined}});
   },
 
-  'set-user-loginpos': function(pos) {
+  'set-user-login-pos': function(pos) {
     Meteor.users.update({_id:Meteor.user()._id}, {$set:{"loginpos":pos}});
-  }
+  },
 
+  'set-user-login-addr': function(addr) {
+    Meteor.users.update({_id:Meteor.user()._id}, {$set:{"loginaddr":addr}});
+  },
+
+  'set-user-login-zip': function(zip) {
+    Meteor.users.update({_id:Meteor.user()._id}, {$set:{"loginzip":zip}});
+  }
 });

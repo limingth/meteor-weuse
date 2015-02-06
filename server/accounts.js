@@ -45,7 +45,11 @@ Accounts.onCreateUser(function (options, user) {
 
     user.profile = result.data;
     user.everything = repo;
+    console.log ('all repos number is ', repo.data.length);
+    user.login = {};
     user.loginpos = {};
+    user.loginaddr = {};
+    user.loginzip = {};
   }
   return user;
 });

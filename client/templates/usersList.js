@@ -52,5 +52,3 @@ Template.usersList.events = {
     }
   }
 }
-
-

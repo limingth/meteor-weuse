@@ -18,6 +18,8 @@ Deps.autorun(function(){
   }
 });
 
+GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
+
 Deps.autorun(function(){
   if (Meteor.user()) 
   {
@@ -28,17 +30,39 @@ Deps.autorun(function(){
     {
       console.log('Geolocation arrived!');
       Session.set('myloc', l);
-      console.log('lat:', Session.get('myloc').lat); 
-      console.log('lng:', Session.get('myloc').lng); 
+      
+      console.log('lat:', l.lat); 
+      console.log('lng:', l.lng); 
+
+      url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng;
+      console.log ('url: ', url);
+
+      $.getJSON(url, function(res) {
+        var a, z;
+        if (res.status === 'OK') {
+          a = res.results[0].formatted_address;
+          z = res.results[2].address_components[0].long_name;
+
+          console.log ('addr: ', a);
+          console.log ('zip: ', z);
+
+          Session.set('myaddr', a);
+          Session.set('myzip', z);
+
+          Meteor.call('set-user-login-addr', a);
+          Meteor.call('set-user-login-zip', z);
+        }
+      });
 
       //Meteor.user().loginpos = l;
-      Meteor.call('set-user-loginpos', l);
+      Meteor.call('set-user-login-pos', l);
 
       var selectedGeohash = geohash.encode(l.lat, l.lng, 5);
       Session.set('selectedGeohash', selectedGeohash);
 
       // as if we have clicked
-      Meteor.call('set-user-geohash', Session.get('selectedGeohash'));
+      Meteor.call('set-user-geohash', selectedGeohash);
+      //Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.geohash":geohash, updatedAt:new Date() }});
     }
   } 
   else 
