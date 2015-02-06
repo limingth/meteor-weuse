@@ -21,11 +21,14 @@ Template.usersList.selectedGeohash = function () {
 }
 
 Template.usersList.allUsers = function () {
+  
   if (Session.get('selectedGeohash')) {
-    return Meteor.users.find({'profile.geohash':Session.get('selectedGeohash')}, {sort:{updatedAt:-1}});
+    return Meteor.users.find({'profile.geohash':Session.get('selectedGeohash')}, {sort:{}});
   } else {
-    return Meteor.users.find({}, {limit:10, sort:{updatedAt:-1}});
+    return Meteor.users.find({}, {limit:10, sort:{updatedAt:1}});
   }
+  
+  //return Meteor.users.find();
 }
 
 // User events

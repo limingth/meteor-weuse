@@ -34,7 +34,12 @@
         <p>{{loginpos.lat}}, {{loginpos.lng}}</p>
         <p>{{loginaddr}}</p>
         <p>{{loginzip}}</p>
-        <p>{{everything.data.length}}</p>
+        <p>all repos: {{everything.data.length}}</p>
+        {{#each everything.data}}
+          <li> <a href={{html_url}} target=_blank>{{name}}</a> {{description}} </li><br>
+        {{else}}
+          <p style="font-size:20px;margin-top:30px;">There are no repo in this guy</p>
+        {{/each}}
       </div>
     </div>
     {{else}}

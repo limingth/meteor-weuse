@@ -21,7 +21,7 @@ Deps.autorun(function(){
 GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 
 Deps.autorun(function(){
-  if (Meteor.user()) 
+  if (Meteor.user() && Meteor.user().lgoinpos) 
   {
     console.log('User is logged');
 
@@ -58,7 +58,7 @@ Deps.autorun(function(){
       Meteor.call('set-user-login-pos', l);
 
       var selectedGeohash = geohash.encode(l.lat, l.lng, 5);
-      Session.set('selectedGeohash', selectedGeohash);
+      //Session.set('selectedGeohash', selectedGeohash);
 
       // as if we have clicked
       Meteor.call('set-user-geohash', selectedGeohash);
