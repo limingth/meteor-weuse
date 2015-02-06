@@ -28,11 +28,12 @@ Deps.autorun(function(){
     var l = Geolocation.latLng();
     if (l)
     {
+      Deps.currentComputation.stop();
       console.log('Geolocation arrived!');
-      Session.set('myloc', l);
-      
-      console.log('lat:', l.lat); 
-      console.log('lng:', l.lng); 
+
+      console.log('lat:', l.lat);
+      console.log('lng:', l.lng);
+      Meteor.call('set-user-login-pos', l);
 
       url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng;
       console.log ('url: ', url);
@@ -53,18 +54,8 @@ Deps.autorun(function(){
           Meteor.call('set-user-login-zip', z);
         }
       });
-
-      //Meteor.user().loginpos = l;
-      Meteor.call('set-user-login-pos', l);
-
-      var selectedGeohash = geohash.encode(l.lat, l.lng, 5);
-      //Session.set('selectedGeohash', selectedGeohash);
-
-      // as if we have clicked
-      Meteor.call('set-user-geohash', selectedGeohash);
-      //Meteor.users.update({_id:Meteor.user()._id}, {$set:{"profile.geohash":geohash, updatedAt:new Date() }});
     }
-  } 
+  }
   else 
     console.log('User is not logged');
 });
