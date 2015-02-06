@@ -33,7 +33,7 @@ Deps.autorun(function(){
 
       console.log('lat:', l.lat);
       console.log('lng:', l.lng);
-      Meteor.call('set-user-loginpos', l);
+      Meteor.call('set-user-login-pos', l);
 
       url = GOOGLE_MAPS_API_URL + l.lat + ',' + l.lng;
       console.log ('url: ', url);
